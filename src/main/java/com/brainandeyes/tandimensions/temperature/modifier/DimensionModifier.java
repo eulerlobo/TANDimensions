@@ -1,5 +1,6 @@
 package com.brainandeyes.tandimensions.temperature.modifier;
 
+import com.brainandeyes.tandimensions.core.TANDimensions;
 import com.brainandeyes.tandimensions.init.ModConfig;
 
 import net.minecraft.util.math.BlockPos;
@@ -16,12 +17,18 @@ public class DimensionModifier extends TemperatureModifier {
     @Override
     public Temperature applyEnvironmentModifiers(World world, BlockPos pos, Temperature initialTemperature, IModifierMonitor monitor) {
         Integer rawTemperatureLevel = initialTemperature.getRawValue();
-        Integer playerDimension = world.provider.getDimension();
+
+        Integer dimension = world.provider.getDimension();
         Integer newRawTemperatureLevel = 0;
 
-        boolean containDimension = ModConfig.dimensionTemperatureData.getDimensionsTemperature().containsKey(playerDimension.toString());
+        boolean containDimension = ModConfig.dimensionTemperatureData.getDimensionsTemperature().containsKey(dimension.toString());
+
+        TANDimensions.logger.info(String.valueOf(containDimension));
+
         if (containDimension) {
-            newRawTemperatureLevel = ModConfig.dimensionTemperatureData.getDimensionsTemperature().get(playerDimension.toString());
+            newRawTemperatureLevel = ModConfig.dimensionTemperatureData.getDimensionsTemperature().get(dimension.toString());
+
+            TANDimensions.logger.info(newRawTemperatureLevel.toString());
         }
         rawTemperatureLevel += newRawTemperatureLevel;
 

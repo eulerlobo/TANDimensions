@@ -15,20 +15,17 @@ public class ModConfig {
 
     public static void preInit(FMLPreInitializationEvent event) {
         configDirectory = new File(event.getModConfigurationDirectory(), ModGlobals.CONFIG_DIRECOTRY);
-    }
-
-    public static void init() {
         dimensionTemperatureData = new DimensionTemperatureData();
 
         //Create with default values or get the config file and set the values
         Map<String, Integer> dimensionTemperatures = JsonUtil.getOrCreateConfigFile(
-            configDirectory,
-            "dimension_temperature.json",
-            dimensionTemperatureData.getDefaulDimensionsTemperatureJson(),
-            dimensionTemperatureData.getDimensionTemperatureDataType()
+                configDirectory,
+                "dimension_temperature.json",
+                dimensionTemperatureData.getDefaulDimensionsTemperatureJson(),
+                dimensionTemperatureData.getDimensionTemperatureDataType()
         );
         dimensionTemperatureData.setDimensionsTemperature(dimensionTemperatures);
-
-        ModDimension.init();
     }
+
+    public static void init() {}
 }

@@ -1,5 +1,7 @@
 package com.brainandeyes.tandimensions.core;
 
+import com.brainandeyes.tandimensions.init.ModConfig;
+import com.brainandeyes.tandimensions.init.ModDimension;
 import com.brainandeyes.tandimensions.init.ModGlobals;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -23,12 +25,10 @@ public class TANDimensions {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
-        instance = this;
-        proxy.preInit(e);
+        ModConfig.preInit(e);
+        ModDimension.init();
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent e) {
-        proxy.init(e);
-    }
+    public void init(FMLInitializationEvent e) {}
 }
