@@ -22,13 +22,8 @@ public class DimensionModifier extends TemperatureModifier {
         Integer newRawTemperatureLevel = 0;
 
         boolean containDimension = ModConfig.dimensionTemperatureData.getDimensionsTemperature().containsKey(dimension.toString());
-
-        TANDimensions.logger.info(String.valueOf(containDimension));
-
         if (containDimension) {
             newRawTemperatureLevel = ModConfig.dimensionTemperatureData.getDimensionsTemperature().get(dimension.toString());
-
-            TANDimensions.logger.info(newRawTemperatureLevel.toString());
         }
         rawTemperatureLevel += newRawTemperatureLevel;
 
